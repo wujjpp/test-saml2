@@ -1,0 +1,17 @@
+<EntityDescriptor
+  xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata"
+  xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
+  xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+  entityID="http://127.0.0.1:3001/metadata">
+  <SPSSODescriptor WantAssertionsSigned="true" protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+    <KeyDescriptor use="signing">
+      <KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+        <X509Data>
+          <X509Certificate>MIIDozCCAougAwIBAgIUYJygATRIaXpllhF3debD6zg/uNYwDQYJKoZIhvcNAQELBQAwYTELMAkGA1UEBhMCQ04xETAPBgNVBAgMCEppYW5nIFN1MRAwDgYDVQQHDAdTdSBaaG91MQwwCgYDVQQKDANRQ0MxHzAdBgNVBAMMFlRlc3QgSWRlbnRpdHkgUHJvdmlkZXIwHhcNMjIxMTI0MDIyNDE0WhcNNDIxMTE5MDIyNDE0WjBhMQswCQYDVQQGEwJDTjERMA8GA1UECAwISmlhbmcgU3UxEDAOBgNVBAcMB1N1IFpob3UxDDAKBgNVBAoMA1FDQzEfMB0GA1UEAwwWVGVzdCBJZGVudGl0eSBQcm92aWRlcjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAOgfFWK0AbL2CdIml1v+YRKp0GaxW4BckwgpH6bMQMRv8nnJZ36syTS3Bj13bBME7+DvCXXWBV0QfDDTtLvaTTJ42TaDvSxcwLIl6kWDWDoQ345/hzUj2+42cAVzeXaMnIvcdddeARAMwoz4rrSXYuJEzR171BndCA0brgYRm1302aWeHKi2TtiAIIfcaw6Kgh2B24alOKVm4HdpRSiQGacrnMzEc+3O0vkFAVhZ4wIhCWYzxOX7o3nKyNRzc9aD8b/wMWbWlQOSJkdB+2bbLO/86KxsTVyp/vLs9dpFlxLrF+o6DCKW13+SoSkQ8jui4KoLwTotRr0JOEMZY5+VajUCAwEAAaNTMFEwHQYDVR0OBBYEFG16Rbyd2F1ePSDFdQRnffxInIrtMB8GA1UdIwQYMBaAFG16Rbyd2F1ePSDFdQRnffxInIrtMA8GA1UdEwEB/wQFMAMBAf8wDQYJKoZIhvcNAQELBQADggEBAFMwonSgeT8jiicB30GxHwhdU2J2EEtUPB4SH6xkEEM4aaKt2fv15JDEZcz8d83hHRZiP3eFaRZ6ZqYchK3pFnmKJi4zwYiDfILxtcar2A8EYmN449AnWNBpWWirDRt9+dP0Rp6mH7i1ip31moFhXFmcueuQ/noMTiVmxNkCltgs22EXJKNcXY70dX425jVDourYJ6zm1iwxiA5nPYKPORJIPW8ggEQf+mbHfmGgrgnWXvKAjfAkIoxpjFTic/giaLV0XkIoThWw+rpBLGaVnFbZWei93IkYYB5OulDoI2AxqS5t441F1GUnHudTjkxVX4YimTxCTJ+LAHvU5PZuNM0=</X509Certificate>
+        </X509Data>
+      </KeyInfo>
+    </KeyDescriptor>
+    <NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress</NameIDFormat>
+    <AssertionConsumerService isDefault="true" index="0" Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="http://127.0.0.1:3001/acs" />
+  </SPSSODescriptor>
+</EntityDescriptor>
