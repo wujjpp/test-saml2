@@ -20,12 +20,17 @@ app.use(session({
   cookie: { secure: true }
 }))
 
+// always recognized as signed in 
 app.use((req, res, next) => {
   if (!req.session.user) {
     req.session.user = {
       id: 1,
       emails: ['wujp@greatld.com'],
-      name: 'Jian Ping'
+      displayName: 'Wu Jian Ping',
+      name: {
+        givenName: 'Jian Ping',
+        familyName: 'Wu'
+      }
     }
   }
   next()
@@ -42,7 +47,7 @@ app.get('/saml/metadata.xml', samlp.metadata({
   }
 }));
 
-app.get('/saml/auth', samlp.auth({
+app.get('/saml/auth', /* should added your authentication middleware */ samlp.auth({
   issuer: 'qcc',
   cert: fs.readFileSync(path.join(__dirname, 'some-cert.pem')),
   key: fs.readFileSync(path.join(__dirname, 'some-cert.key')),
@@ -58,7 +63,7 @@ app.get('/saml/auth', samlp.auth({
 }))
 
 
-app.post('/saml/auth', samlp.auth({
+app.post('/saml/auth', /* should added your authentication middleware */ samlp.auth({
   issuer: 'qcc',
   cert: fs.readFileSync(path.join(__dirname, 'some-cert.pem')),
   key: fs.readFileSync(path.join(__dirname, 'some-cert.key')),

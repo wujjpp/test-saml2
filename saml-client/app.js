@@ -33,7 +33,6 @@ app.get("/", (req, res) => {
 app.get('/sso-redirect', (req, res) => {
   const redirect = sp.createLoginRequest(idp, 'redirect');
   const { id, context } = redirect
-  console.log(redirect)
   return res.redirect(context);
 });
 
@@ -45,16 +44,13 @@ app.post('/acs', (req, res) => {
   sp.parseLoginResponse(idp, 'post', req)
     .then(parseResult => {
       res.json(parseResult)
+      // res.header('Content-Type', 'text/xml').send(parseResult.samlContent)
     })
     .catch(console.error);
 });
 
 app.get('/metadata', (req, res) => {
   res.header('Content-Type', 'text/xml').send(sp.getMetadata());
-});
-
-app.get('/metadata-dp', (req, res) => {
-  res.header('Content-Type', 'text/xml').send(idp.getMetadata());
 });
 
 app.post('/error', (req, res) => {
@@ -66,9 +62,10 @@ app.post('/error', (req, res) => {
       res.send(err)
     });
 
-  // buf = new Buffer(req.body.SAMLResponse, 'base64')
-  // res.header('Content-type', 'text/xml')
-  // res.send(buf.toString())
+})
+
+app.use((err, req, res, next) => {
+  res.send(err)
 })
 
 app.listen(3001, err => {
