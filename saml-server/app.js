@@ -48,7 +48,7 @@ app.get('/saml/auth', samlp.auth({
   key: fs.readFileSync(path.join(__dirname, 'some-cert.key')),
 
   getPostURL: function (audience, samlRequestDom, req, callback) {
-    acs = samlRequestDom?.documentElement?.getAttributeNode("AssertionConsumerServiceURL")?.nodeValue
+    const acs = samlRequestDom?.documentElement?.getAttributeNode("AssertionConsumerServiceURL")?.nodeValue
     return callback(null, acs)
   },
 
@@ -64,12 +64,12 @@ app.post('/saml/auth', samlp.auth({
   key: fs.readFileSync(path.join(__dirname, 'some-cert.key')),
 
   getPostURL: function (audience, samlRequestDom, req, callback) {
-    acs = samlRequestDom?.documentElement?.getAttributeNode("AssertionConsumerServiceURL")?.nodeValue
+    const acs = samlRequestDom?.documentElement?.getAttributeNode("AssertionConsumerServiceURL")?.nodeValue
     return callback(null, acs)
   },
 
   getUserFromRequest: function (req) {
-    return req.session?.userx
+    return req.session?.user
   }
 }))
 
