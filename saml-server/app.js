@@ -62,7 +62,6 @@ app.get('/saml/auth', /* should added your authentication middleware */ samlp.au
   }
 }))
 
-
 app.post('/saml/auth', /* should added your authentication middleware */ samlp.auth({
   issuer: 'qcc',
   cert: fs.readFileSync(path.join(__dirname, 'some-cert.pem')),

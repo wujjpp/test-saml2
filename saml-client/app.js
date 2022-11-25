@@ -36,7 +36,7 @@ app.get('/sso-redirect', (req, res) => {
   return res.redirect(context);
 });
 
-app.get('/sso-redirect', (req, res) => {
+app.post('/sso-redirect', (req, res) => {
   res.render('actions', sp.createLoginRequest(idp, 'post'));
 });
 
