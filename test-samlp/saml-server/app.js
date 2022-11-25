@@ -36,7 +36,7 @@ app.use((req, res, next) => {
   next()
 })
 
-app.get('/saml/metadata.xml', samlp.metadata({
+app.get('/metadata', samlp.metadata({
   issuer: 'qcc',
   cert: fs.readFileSync(path.join(__dirname, 'some-cert.pem')),
   redirectEndpointPath: '/saml/auth',
