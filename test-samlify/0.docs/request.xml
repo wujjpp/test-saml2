@@ -1,0 +1,4 @@
+<samlp:AuthnRequest xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" ID="_20f13887-c009-4df6-9749-926ea0c89dfd" Version="2.0" IssueInstant="2022-11-25T05:36:51.113Z" Destination="http://127.0.0.1:3000/saml/auth" ProtocolBinding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" AssertionConsumerServiceURL="http://127.0.0.1:3001/acs">
+  <saml:Issuer>http://127.0.0.1:3001/metadata</saml:Issuer>
+  <samlp:NameIDPolicy Format="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress" AllowCreate="false"></samlp:NameIDPolicy>
+</samlp:AuthnRequest>

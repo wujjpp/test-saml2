@@ -1,0 +1,59 @@
+<samlp:Response xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol" ID="_899d844d2b105b273236" InResponseTo="_20f13887-c009-4df6-9749-926ea0c89dfd" Version="2.0" IssueInstant="2022-11-25T05:36:51.170Z" Destination="http://127.0.0.1:3001/metadata">
+  <saml:Issuer xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion">qcc</saml:Issuer>
+  <samlp:Status>
+    <samlp:StatusCode Value="urn:oasis:names:tc:SAML:2.0:status:Success"></samlp:StatusCode>
+  </samlp:Status>
+  <saml:Assertion xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" Version="2.0" ID="_rvtkoaaoJiahoHsRjpgnf8LG4sx5QoOS" IssueInstant="2022-11-25T05:36:51.147Z">
+    <saml:Issuer>qcc</saml:Issuer>
+    <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+      <SignedInfo>
+        <CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"></CanonicalizationMethod>
+        <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></SignatureMethod>
+        <Reference URI="#_rvtkoaaoJiahoHsRjpgnf8LG4sx5QoOS">
+          <Transforms>
+            <Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"></Transform>
+            <Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"></Transform>
+          </Transforms>
+          <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+          <DigestValue>8n4Kvc0SVu0B7AT6fu/QkhvgcR5RlkrN9J26QT6tNPw=</DigestValue>
+        </Reference>
+      </SignedInfo>
+      <SignatureValue>J+8e7fprO7H8fyosTYpzAbtrZNxc2th6BJLgHi2fnPtJuLZlfDozh1C6mu8DMxX+Q9WQRvfsI6X/RFTvuZ1bJQ8N266aDee5i0CNYwLxirtxgctVEXke+BsJbIX1nEi6aQxChAE9rQHWl8hjJvdnAzLb986Iy6+Do1COleFdslsRnOnPU32gwmisvp/8U0+GyGc0hXEguDIlEGCwl7mZn41CKpRAp0Q4YCBCKdIFax4HadQswLYJI6J+w2H1R8ZsKp3hnpg+O1UcwiTDz49df36A3a4ywwZL+jB7HWC8PBBGTLrpGa1CGgy2sW/pUZ5QgSJjKc8TmBlWONDAar+9Hg==</SignatureValue>
+      <KeyInfo>
+        <X509Data>
+          <X509Certificate>MIIDozCCAougAwIBAgIUYJygATRIaXpllhF3debD6zg/uNYwDQYJKoZIhvcNAQELBQAwYTELMAkGA1UEBhMCQ04xETAPBgNVBAgMCEppYW5nIFN1MRAwDgYDVQQHDAdTdSBaaG91MQwwCgYDVQQKDANRQ0MxHzAdBgNVBAMMFlRlc3QgSWRlbnRpdHkgUHJvdmlkZXIwHhcNMjIxMTI0MDIyNDE0WhcNNDIxMTE5MDIyNDE0WjBhMQswCQYDVQQGEwJDTjERMA8GA1UECAwISmlhbmcgU3UxEDAOBgNVBAcMB1N1IFpob3UxDDAKBgNVBAoMA1FDQzEfMB0GA1UEAwwWVGVzdCBJZGVudGl0eSBQcm92aWRlcjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAOgfFWK0AbL2CdIml1v+YRKp0GaxW4BckwgpH6bMQMRv8nnJZ36syTS3Bj13bBME7+DvCXXWBV0QfDDTtLvaTTJ42TaDvSxcwLIl6kWDWDoQ345/hzUj2+42cAVzeXaMnIvcdddeARAMwoz4rrSXYuJEzR171BndCA0brgYRm1302aWeHKi2TtiAIIfcaw6Kgh2B24alOKVm4HdpRSiQGacrnMzEc+3O0vkFAVhZ4wIhCWYzxOX7o3nKyNRzc9aD8b/wMWbWlQOSJkdB+2bbLO/86KxsTVyp/vLs9dpFlxLrF+o6DCKW13+SoSkQ8jui4KoLwTotRr0JOEMZY5+VajUCAwEAAaNTMFEwHQYDVR0OBBYEFG16Rbyd2F1ePSDFdQRnffxInIrtMB8GA1UdIwQYMBaAFG16Rbyd2F1ePSDFdQRnffxInIrtMA8GA1UdEwEB/wQFMAMBAf8wDQYJKoZIhvcNAQELBQADggEBAFMwonSgeT8jiicB30GxHwhdU2J2EEtUPB4SH6xkEEM4aaKt2fv15JDEZcz8d83hHRZiP3eFaRZ6ZqYchK3pFnmKJi4zwYiDfILxtcar2A8EYmN449AnWNBpWWirDRt9+dP0Rp6mH7i1ip31moFhXFmcueuQ/noMTiVmxNkCltgs22EXJKNcXY70dX425jVDourYJ6zm1iwxiA5nPYKPORJIPW8ggEQf+mbHfmGgrgnWXvKAjfAkIoxpjFTic/giaLV0XkIoThWw+rpBLGaVnFbZWei93IkYYB5OulDoI2AxqS5t441F1GUnHudTjkxVX4YimTxCTJ+LAHvU5PZuNM0=</X509Certificate>
+        </X509Data>
+      </KeyInfo>
+    </Signature>
+    <saml:Subject>
+      <saml:NameID Format="urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified">1</saml:NameID>
+      <saml:SubjectConfirmation Method="urn:oasis:names:tc:SAML:2.0:cm:bearer">
+        <saml:SubjectConfirmationData NotOnOrAfter="2022-11-25T06:36:51.147Z" InResponseTo="_20f13887-c009-4df6-9749-926ea0c89dfd"></saml:SubjectConfirmationData>
+      </saml:SubjectConfirmation>
+    </saml:Subject>
+    <saml:Conditions NotBefore="2022-11-25T05:36:51.147Z" NotOnOrAfter="2022-11-25T06:36:51.147Z">
+      <saml:AudienceRestriction>
+        <saml:Audience>http://127.0.0.1:3001/metadata</saml:Audience>
+      </saml:AudienceRestriction>
+    </saml:Conditions>
+    <saml:AuthnStatement AuthnInstant="2022-11-25T05:36:51.147Z">
+      <saml:AuthnContext>
+        <saml:AuthnContextClassRef>urn:oasis:names:tc:SAML:2.0:ac:classes:unspecified</saml:AuthnContextClassRef>
+      </saml:AuthnContext>
+    </saml:AuthnStatement>
+    <saml:AttributeStatement xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <saml:Attribute Name="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
+        <saml:AttributeValue xsi:type="xs:double">1</saml:AttributeValue>
+      </saml:Attribute>
+      <saml:Attribute Name="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
+        <saml:AttributeValue xsi:type="xs:string">Wu Jian Ping</saml:AttributeValue>
+      </saml:Attribute>
+      <saml:Attribute Name="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
+        <saml:AttributeValue xsi:type="xs:string">Jian Ping</saml:AttributeValue>
+      </saml:Attribute>
+      <saml:Attribute Name="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
+        <saml:AttributeValue xsi:type="xs:string">Wu</saml:AttributeValue>
+      </saml:Attribute>
+    </saml:AttributeStatement>
+  </saml:Assertion>
+</samlp:Response>
