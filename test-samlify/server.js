@@ -5,16 +5,17 @@ const exphbs = require('express3-handlebars');
 const fs = require('fs')
 const validator = require('@authenio/samlify-xsd-schema-validator')
 const session = require('express-session')
+const qs = require('querystring')
 
 samlify.setSchemaValidator(validator);
 
 const idp = samlify.IdentityProvider({
-  metadata: fs.readFileSync('./metadata/idp.xml'),
-  privateKey: fs.readFileSync('./certs/dp-encrypt-key.pem')
+  metadata: fs.readFileSync('./metadata/signed-idp.xml'),
+  privateKey: fs.readFileSync('./certs/dp-encrypt-key.pem'),
 });
 
 const sp = samlify.ServiceProvider({
-  metadata: fs.readFileSync('./metadata/sp.xml'),
+  metadata: fs.readFileSync('./metadata/signed-sp.xml'),
 });
 
 const app = express()
@@ -62,7 +63,24 @@ app.get('/metadata', (req, res) => {
 // DP
 app.get('/saml/auth', async (req, res, next) => {
   try {
-    const requestData = await idp.parseLoginRequest(sp, 'redirect', req)
+    let octetString = ""
+    if (req.query.SAMLRequest) {
+      octetString += "SAMLRequest=" + encodeURIComponent(req.query.SAMLRequest)
+    }
+    else if (req.query.SAMLResponse) {
+      octetString += "SAMLResponse=" + encodeURIComponent(req.query.SAMLResponse)
+    }
+    if (req.query.RelayState) {
+      octetString += "&RelayState=" + encodeURIComponent(req.query.RelayState)
+    }
+    if (req.query.SigAlg) {
+      octetString += "&SigAlg=" + encodeURIComponent(req.query.SigAlg)
+    }
+    const requestData = await idp.parseLoginRequest(sp, 'redirect', {
+      query: req.query,
+      body: req.body,
+      octetString: octetString
+    })
     const responseData = await idp.createLoginResponse(sp, requestData, 'post', req.session.user)
     const { id, context: SAMLResponse, entityEndpoint: spAcsUrl } = responseData
     return res.header('Content-Type', 'text/html').send(`
@@ -85,7 +103,7 @@ app.get('/saml/auth', async (req, res, next) => {
 
 app.post('/saml/auth', async (req, res, next) => {
   try {
-    const requestData = await idp.parseLoginRequest(sp, 'post', req)
+    const requestData = await idp.parseLoginRequest(sp, 'post', { query: req.query, body: req.body })
     const responseData = await idp.createLoginResponse(sp, requestData, 'post', req.session.user)
     const { id, context: SAMLResponse, entityEndpoint: spAcsUrl } = responseData
     return res.header('Content-Type', 'text/html').send(`

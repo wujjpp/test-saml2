@@ -8,14 +8,14 @@ const validator = require('@authenio/samlify-xsd-schema-validator')
 samlify.setSchemaValidator(validator);
 
 const idp = samlify.IdentityProvider({
-  metadata: fs.readFileSync('./metadata/idp.xml'),
+  metadata: fs.readFileSync('./metadata/signed-idp.xml'),
 });
 
 const sp = samlify.ServiceProvider({
-  metadata: fs.readFileSync('./metadata/sp.xml'),
+  metadata: fs.readFileSync('./metadata/signed-sp.xml'),
   // 下面两行代码只有在需要request sign的时候才需要
-  // privateKey: fs.readFileSync('./certs/sp-encrypt-key.pem'),
-  // requestSignatureAlgorithm: 'http://www.w3.org/2001/04/xmldsig-more#rsa-sha512'
+  privateKey: fs.readFileSync('./certs/sp-encrypt-key.pem'),
+  requestSignatureAlgorithm: 'http://www.w3.org/2001/04/xmldsig-more#rsa-sha512'
 });
 
 const app = express()
