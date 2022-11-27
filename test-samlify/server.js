@@ -5,7 +5,6 @@ const exphbs = require('express3-handlebars');
 const fs = require('fs')
 const validator = require('@authenio/samlify-xsd-schema-validator')
 const session = require('express-session')
-const qs = require('querystring')
 
 samlify.setSchemaValidator(validator);
 
@@ -81,20 +80,24 @@ app.get('/saml/auth', async (req, res, next) => {
       body: req.body,
       octetString: octetString
     })
-    const responseData = await idp.createLoginResponse(sp, requestData, 'post', req.session.user)
-    const { id, context: SAMLResponse, entityEndpoint: spAcsUrl } = responseData
-    return res.header('Content-Type', 'text/html').send(`
-<html>
-  <body>
-    <form id="sso" method="post" action="${spAcsUrl}" autocomplete="off">
-      <input type="hidden" name="SAMLResponse" id="resp" value="${SAMLResponse}" />
-    </form>
-    <script language="javascript" type="text/javascript">
-        window.setTimeout(function(){document.forms[0].submit();}, 0);
-    </script>
-  </body>
-</html>
-`);
+    const responseData = await idp.createLoginResponse(sp, requestData, 'redirect', req.session.user)
+    const { id, context } = responseData
+    res.redirect(context)
+
+    //     const responseData = await idp.createLoginResponse(sp, requestData, 'post', req.session.user)
+    //     const { id, context: SAMLResponse, entityEndpoint: spAcsUrl } = responseData
+    //     return res.header('Content-Type', 'text/html').send(`
+    // <html>
+    //   <body>
+    //     <form id="sso" method="post" action="${spAcsUrl}" autocomplete="off">
+    //       <input type="hidden" name="SAMLResponse" id="resp" value="${SAMLResponse}" />
+    //     </form>
+    //     <script language="javascript" type="text/javascript">
+    //         window.setTimeout(function(){document.forms[0].submit();}, 0);
+    //     </script>
+    //   </body>
+    // </html>
+    // `);
   }
   catch (err) {
     next(err)
@@ -124,8 +127,33 @@ app.post('/saml/auth', async (req, res, next) => {
   }
 })
 
-app.get('/saml/logout', (req, res, next) => {
-  res.send('get: /saml/logout')
+app.get('/saml/logout', async (req, res, next) => {
+  try {
+    let octetString = ""
+    if (req.query.SAMLRequest) {
+      octetString += "SAMLRequest=" + encodeURIComponent(req.query.SAMLRequest)
+    }
+    else if (req.query.SAMLResponse) {
+      octetString += "SAMLResponse=" + encodeURIComponent(req.query.SAMLResponse)
+    }
+    if (req.query.RelayState) {
+      octetString += "&RelayState=" + encodeURIComponent(req.query.RelayState)
+    }
+    if (req.query.SigAlg) {
+      octetString += "&SigAlg=" + encodeURIComponent(req.query.SigAlg)
+    }
+    const requestData = await idp.parseLogoutRequest(sp, 'redirect', {
+      query: req.query,
+      body: req.body,
+      octetString: octetString
+    })
+
+    response = await idp.createLogoutResponse(sp, requestData, "redirect")
+    res.redirect(response.context)
+  }
+  catch (err) {
+    next(err)
+  }
 })
 
 app.post('/saml/logout', (req, res, next) => {
